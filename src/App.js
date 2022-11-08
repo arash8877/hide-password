@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function App() {
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState(FaEyeSlash);
+
+  const handleClick = () => {
+    if (type === "password") {
+      setType("text");
+      setIcon(FaEyeSlash);
+    } else {
+      setType("password");
+      setIcon(FaEye);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <div className="input-filed">
+        <input type={type} />
+        <span onClick={handleClick}>{icon}</span>
+      </div>
     </div>
   );
 }
